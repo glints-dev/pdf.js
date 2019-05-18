@@ -1621,6 +1621,9 @@ const PDFWorker = (function PDFWorkerClosure() {
 
         const messageHandler = new MessageHandler(id, id + '_worker', port);
         this._messageHandler = messageHandler;
+        this._messageHandler.send('configure', {
+          verbosity: this.verbosity,
+        });
         this._readyCapability.resolve();
       }).catch((reason) => {
         this._readyCapability.reject(
